@@ -1,0 +1,95 @@
+.\.venv\Scripts\python.exe : Run run_3c04e197787c2f61: project A, suite public, business date 2026-11-16, 12 
+scenario(s).
+At line:1 char:1
++ .\.venv\Scripts\python.exe "..\Proiect\Specificatii Proiect\Instrumen ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Run run_3c04e19...12 scenario(s).:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+BASE_URL = https://apb.majordom.tech/r/Bd7Djt5NHpD_kd09PhafoA
+$ .\.venv\Scripts\python.exe solutie.py https://apb.majordom.tech/r/Bd7Djt5NHpD_kd09PhafoA
+[START] data de lucru 2026-11-16, 49 documente in inbox, 4 decizii in istoric (0 din aceasta rulare)
+[DOCUMENT] DOC-52959178: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-10296452: RECORDED MANUAL_REVIEW coduri=[PO_BALANCE_EXCEEDED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-11785625: RECORDED MANUAL_REVIEW coduri=[TOTAL_MISMATCH] notificari=[AP_REVIEWER]
+[REINCERCARE] POST /decisions: HTTP 500 INTERNAL_ERROR; incercarea 1 din 3 a esuat, astept 1s
+[REINCERCARE] POST /decisions: HTTP 500 INTERNAL_ERROR; incercarea 2 din 3 a esuat, astept 1s
+[DOCUMENT] DOC-12411814: FAILED APPROVED coduri=[] notificari=[] (POST /decisions a raspuns 500 la toate cele 3 incercari)
+[REINCERCARE] GET /suppliers/70576099: 429 RATE_LIMITED, astept 1s (asteptarea 1 din 10, nu consuma o incercare)
+[REINCERCARE] POST /decisions: HTTP 503 SERVICE_UNAVAILABLE; incercarea 1 din 3 a esuat, astept 1s
+[DOCUMENT] DOC-16313769: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-43557889: RECORDED MANUAL_REVIEW coduri=[PO_BALANCE_EXCEEDED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-58724278: RECORDED MANUAL_REVIEW coduri=[EXTRACTION_FAILED] notificari=[AP_REVIEWER] (XML invalid (no element found: line 37, column 21))
+[DOCUMENT] DOC-62256874: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-62871827: RECORDED MANUAL_REVIEW coduri=[SUPPLIER_UNKNOWN] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-68323025: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-83297689: RECORDED DUPLICATE coduri=[DUPLICATE_INVOICE] notificari=[AP_TEAM]
+[DOCUMENT] DOC-89503911: RECORDED REJECTED coduri=[ABOVE_APPROVAL_LIMIT, IBAN_MISMATCH, SUPPLIER_BLOCKED] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-97898768: RECORDED MANUAL_REVIEW coduri=[PO_MISSING] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-16587731: RECORDED REJECTED coduri=[SUPPLIER_UNKNOWN, VAT_RATE_INVALID] notificari=[AP_TEAM]
+[DOCUMENT] DOC-27570240: ALREADY_PROCESSED APPROVED coduri=[] notificari=[]
+[DOCUMENT] DOC-43391691: RECORDED REJECTED coduri=[DUE_DATE_BEFORE_ISSUE] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-51856934: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-63773909: RECORDED MANUAL_REVIEW coduri=[TOTAL_MISMATCH] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-65595447: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-77465683: RECORDED REJECTED coduri=[SUPPLIER_INACTIVE] notificari=[SUPPLIER, AP_TEAM]
+[REINCERCARE] GET /documents/DOC-80991890: HTTP 503 SERVICE_UNAVAILABLE; incercarea 1 din 3 a esuat, astept 1s
+[REINCERCARE] POST /notifications: 429 RATE_LIMITED, astept 1s (asteptarea 1 din 10, nu consuma o incercare)
+[REINCERCARE] POST /notifications: HTTP 503 SERVICE_UNAVAILABLE; incercarea 1 din 3 a esuat, astept 1s
+[DOCUMENT] DOC-80991890: RECORDED REJECTED coduri=[SUPPLIER_INACTIVE] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-90333751: RECORDED MANUAL_REVIEW coduri=[PO_NOT_FOUND] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-93777977: RECORDED MANUAL_REVIEW coduri=[IBAN_MISMATCH] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-97380805: RECORDED MANUAL_REVIEW coduri=[EXTRACTION_FAILED] notificari=[AP_REVIEWER] (lipsesc campurile: number)
+[DOCUMENT] DOC-29951524: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-30523832: RECORDED MANUAL_REVIEW coduri=[INVOICE_BEFORE_PO] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-32587887: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-41084278: RECORDED REJECTED coduri=[VAT_RATE_INVALID] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-53687496: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-58271366: RECORDED REJECTED coduri=[DUE_DATE_BEFORE_ISSUE, PO_MISSING] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-58778443: RECORDED REJECTED coduri=[SUPPLIER_BLOCKED] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-75691043: RECORDED REJECTED coduri=[PO_SUPPLIER_MISMATCH] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-75724259: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-84939432: RECORDED MANUAL_REVIEW coduri=[ABOVE_APPROVAL_LIMIT] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-99181086: ALREADY_PROCESSED REJECTED coduri=[SUPPLIER_BLOCKED] notificari=[]
+[DOCUMENT] DOC-13849791: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-27434249: RECORDED MANUAL_REVIEW coduri=[EXTRACTION_FAILED] notificari=[AP_REVIEWER] (data emiterii nu este o data valida: '31.02.2026')
+[DOCUMENT] DOC-41234136: RECORDED MANUAL_REVIEW coduri=[PO_BALANCE_EXCEEDED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-42396169: RECORDED REJECTED coduri=[PO_CLOSED] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-45152428: RECORDED DUPLICATE coduri=[DUPLICATE_INVOICE] notificari=[AP_TEAM]
+[DOCUMENT] DOC-80660104: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-93199556: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[REINCERCARE] GET /purchase-orders/PO-262859: HTTP 500 INTERNAL_ERROR; incercarea 1 din 3 a esuat, astept 1s
+[REINCERCARE] POST /decisions: HTTP 503 SERVICE_UNAVAILABLE; incercarea 1 din 3 a esuat, astept 1s
+[REINCERCARE] POST /decisions: 429 RATE_LIMITED, astept 1s (asteptarea 1 din 10, nu consuma o incercare)
+[REINCERCARE] POST /decisions: HTTP 503 SERVICE_UNAVAILABLE; incercarea 2 din 3 a esuat, astept 1s
+[DOCUMENT] DOC-96463203: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-99716295: RECORDED MANUAL_REVIEW coduri=[INVOICE_BEFORE_PO, TOTAL_MISMATCH] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-18270528: RECORDED REJECTED coduri=[VAT_RATE_INVALID] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-43547216: RECORDED REJECTED coduri=[CURRENCY_MISMATCH] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-50483851: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-85504236: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-79364625: RECORDED REJECTED coduri=[INVOICE_DATE_IN_FUTURE] notificari=[SUPPLIER, AP_TEAM]
+[RAPORT] trimis cu cheia report: 49 intrari
+The solution exited with code 0 after 33.0s.
+Run run_3c04e197787c2f61  project A  suite public  seed 1  business date 2026-11-16
+TOTAL 12.00 / 12.00  (100.0%)
+
+Category           Score     Max  Scenarios
+rules               6.00    6.00          6
+combined            3.00    3.00          3
+variations          1.00    1.00          1
+robustness          2.00    2.00          2
+
+Scenario  Category           Score     Max  Title
+A-P01     variations          1.00    1.00  Clean invoices in every document format and PDF layout are approved
+A-P02     rules               1.00    1.00  Unreadable documents go to manual review with EXTRACTION_FAILED only
+A-P03     rules               1.00    1.00  Supplier unknown, inactive or blocked
+A-P04     rules               1.00    1.00  Purchase order missing, unknown, foreign, closed or in another currency
+A-P05     rules               1.00    1.00  Issue date in the future, due date before issue, invoice older than its order
+A-P06     rules               1.00    1.00  Line arithmetic and VAT rates by tax point date
+A-P07     rules               1.00    1.00  PO balance, IBAN and the auto-approval limit
+A-P08     combined            1.00    1.00  Business duplicates against history and earlier documents of the run
+A-P09     combined            1.00    1.00  Several reasons at once, outcome precedence and the notification matrix
+A-P10     combined            1.00    1.00  The PO balance is consumed in canonical order by approved invoices only
+A-P11     robustness          1.00    1.00  Transient faults are retried without duplicate side effects
+A-P12     robustness          1.00    1.00  A decision that cannot be recorded, and documents already processed by an earlier run
