@@ -26,6 +26,7 @@ class Config:
     vat_rates: list[VatRate]
     notification_matrix: dict[str, list[dict]]
     recipients: dict[str, str]
+    three_way_match: bool = False
 
     @classmethod
     def from_json(cls, data: dict) -> "Config":
@@ -36,6 +37,7 @@ class Config:
                                _optional_date(entry.get("valid_to"))) for entry in data["vat_rates"]],
             notification_matrix=data.get("notification_matrix") or {},
             recipients=data.get("recipients") or {},
+            three_way_match=(data.get("features") or {}).get("three_way_match") is True,
         )
 
 

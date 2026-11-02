@@ -1,4 +1,4 @@
-"""Regulile A-R02 - A-R14."""
+"""Regulile A-R02 - A-R14 si A-R19."""
 
 from datetime import date
 from decimal import Decimal
@@ -14,7 +14,8 @@ REJECTED_CODES = frozenset({
 
 
 def check_rules(invoice: Invoice, supplier: dict | None, po: dict | None, later_approved_net: Decimal,
-                business_date: date, config: Config) -> list[str]:
+                business_date: date, config: Config,
+                available_quantities: dict[str, Decimal] | None = None) -> list[str]:
     codes = set()
 
     if supplier is None:
@@ -42,6 +43,12 @@ def check_rules(invoice: Invoice, supplier: dict | None, po: dict | None, later_
             codes.add("PO_BALANCE_EXCEEDED")
         if invoice.issue_date < iso_date(po["order_date"]):
             codes.add("INVOICE_BEFORE_PO")
+        # A-R19 nu se omite pentru comandă închisă, monedă sau furnizor diferit.
+        if config.three_way_match:
+            available = available_quantities or {}
+            if any(quantity > available.get(code, Decimal(0))
+                   for code, quantity in invoice_quantities(invoice).items()):
+                codes.add("QTY_NOT_RECEIVED")
 
     if invoice.issue_date > business_date:
         codes.add("INVOICE_DATE_IN_FUTURE")
@@ -59,6 +66,13 @@ def check_rules(invoice: Invoice, supplier: dict | None, po: dict | None, later_
         codes.add("ABOVE_APPROVAL_LIMIT")
 
     return sorted(codes)
+
+
+def invoice_quantities(invoice: Invoice) -> dict[str, Decimal]:
+    quantities = {}
+    for line in invoice.lines:
+        quantities[line.item_code] = quantities.get(line.item_code, Decimal(0)) + line.quantity
+    return quantities
 
 
 def recalculate(invoice: Invoice) -> tuple[list[Decimal], Decimal, Decimal, Decimal]:

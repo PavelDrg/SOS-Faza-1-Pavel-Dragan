@@ -1,13 +1,6 @@
-.\.venv\Scripts\python.exe : Run run_3c04e197787c2f61: project A, suite public, business date 2026-11-16, 12 
-scenario(s).
-At line:1 char:1
-+ .\.venv\Scripts\python.exe "..\Proiect\Specificatii Proiect\Instrumen ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Run run_3c04e19...12 scenario(s).:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-BASE_URL = https://apb.majordom.tech/r/Bd7Djt5NHpD_kd09PhafoA
-$ .\.venv\Scripts\python.exe solutie.py https://apb.majordom.tech/r/Bd7Djt5NHpD_kd09PhafoA
+Run run_7642138ac8a20f98: project A, suite public, business date 2026-11-16, 12 scenario(s).
+BASE_URL = https://apb.majordom.tech/r/TtbFNwaOQhXAcQUjoq4_FA
+$ .\.venv\Scripts\python.exe solutie.py https://apb.majordom.tech/r/TtbFNwaOQhXAcQUjoq4_FA
 [START] data de lucru 2026-11-16, 49 documente in inbox, 4 decizii in istoric (0 din aceasta rulare)
 [DOCUMENT] DOC-52959178: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
 [DOCUMENT] DOC-10296452: RECORDED MANUAL_REVIEW coduri=[PO_BALANCE_EXCEEDED] notificari=[AP_REVIEWER]
@@ -70,8 +63,8 @@ $ .\.venv\Scripts\python.exe solutie.py https://apb.majordom.tech/r/Bd7Djt5NHpD_
 [DOCUMENT] DOC-85504236: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
 [DOCUMENT] DOC-79364625: RECORDED REJECTED coduri=[INVOICE_DATE_IN_FUTURE] notificari=[SUPPLIER, AP_TEAM]
 [RAPORT] trimis cu cheia report: 49 intrari
-The solution exited with code 0 after 33.0s.
-Run run_3c04e197787c2f61  project A  suite public  seed 1  business date 2026-11-16
+The solution exited with code 0 after 32.8s.
+Run run_7642138ac8a20f98  project A  suite public  seed 1  business date 2026-11-16
 TOTAL 12.00 / 12.00  (100.0%)
 
 Category           Score     Max  Scenarios

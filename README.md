@@ -1,6 +1,6 @@
 # Procesarea facturilor
 
-Proiect A, faza 1. Programul citește facturile XML sau PDF din hub, verifică datele și înregistrează deciziile, notificările și raportul final.
+Proiect A, faza 1. Programul citește facturile XML sau PDF din hub, verifică datele și înregistrează deciziile, notificările și raportul final. Include și CR-1, pentru verificarea cantităților recepționate.
 
 ## Pași pentru rulare
 
@@ -25,7 +25,7 @@ command: python solutie.py {base_url}
 
 Documentele care încep cu `%PDF` sunt citite ca PDF, iar celelalte ca XML. Un șablon PDF necunoscut sau un CUI care nu are 2-10 cifre după normalizare este tratat ca ilizibil. Dacă pentru o monedă nu există limită de aprobare în configurație, verificarea acelei limite se omite.
 
-Data de lucru, pragurile și destinatarii se citesc din hub.
+CR-1 se activează din `features.three_way_match`, fără modificarea programului. Data de lucru, pragurile și destinatarii se citesc din hub.
 
 Logurile sunt în `logs/`. Nota de arhitectură este în `Arhitectura.pdf`.
 

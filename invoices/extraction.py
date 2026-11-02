@@ -22,6 +22,7 @@ class InvoiceLine:
     unit_price: Decimal
     amount: Decimal
     vat_rate: Decimal
+    item_code: str | None = None
 
 
 @dataclass
@@ -78,7 +79,7 @@ _XML_FIELDS = {
     "gross_total": "cac:LegalMonetaryTotal/cbc:TaxInclusiveAmount",
 }
 _XML_LINE = ("cbc:InvoicedQuantity", "cac:Price/cbc:PriceAmount", "cbc:LineExtensionAmount",
-             "cac:Item/cac:ClassifiedTaxCategory/cbc:Percent")
+             "cac:Item/cac:ClassifiedTaxCategory/cbc:Percent", "cac:Item/cac:SellersItemIdentification/cbc:ID")
 _XML_FORMAT = _Format(".", None, "%Y-%m-%d")
 
 
@@ -144,7 +145,7 @@ def _read_pdf(content):
             if cells[0].isdigit():
                 if len(cells) != 7:
                     raise ExtractionError(f"rand de linie cu {len(cells)} celule in loc de 7")
-                lines.append((cells[3], cells[4], cells[5], cells[6].replace("%", "").strip()))
+                lines.append((cells[3], cells[4], cells[5], cells[6].replace("%", "").strip(), cells[1]))
             continue
         if row.split(": ", 1)[0].strip() in _NOTES_LABELS:
             continue
@@ -194,12 +195,13 @@ def _build_invoice(fields, lines, number_format):
         raise ExtractionError(f"CUI-ul furnizorului nu poate fi citit: {fields['supplier_cui']!r}")
 
     invoice_lines = []
-    for index, (quantity, unit_price, amount, vat_rate) in enumerate(lines, start=1):
+    for index, (quantity, unit_price, amount, vat_rate, item_code) in enumerate(lines, start=1):
         invoice_lines.append(InvoiceLine(
             quantity=number(quantity, f"cantitatea liniei {index}"),
             unit_price=number(unit_price, f"pretul unitar al liniei {index}"),
             amount=number(amount, f"valoarea liniei {index}"),
             vat_rate=number(vat_rate, f"cota TVA a liniei {index}"),
+            item_code=item_code,
         ))
 
     delivery = fields.get("delivery_date")

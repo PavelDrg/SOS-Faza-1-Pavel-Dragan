@@ -8,7 +8,7 @@ from .extraction import ExtractionError, Invoice, extract_invoice
 from .hub import HubError, RetriesExhausted, path_part
 from .log import log
 from .normalize import iso_date, money, to_decimal
-from .rules import check_rules, outcome_for
+from .rules import check_rules, invoice_quantities, outcome_for
 
 MAX_REPORT_KEYS = 50
 
@@ -48,6 +48,7 @@ class InvoiceProcessor:
         history = self.client.get_json("/history")
         self.positions = {item["document_id"]: index for index, item in enumerate(inbox)}
         self.this_run = [decision for decision in history if decision["source"] == "THIS_RUN"]
+        self.quantity_cache = {}
         log(f"[START] data de lucru {self.business_date}, {len(inbox)} documente in inbox, "
             f"{len(history)} decizii in istoric ({len(self.this_run)} din aceasta rulare)")
 
@@ -92,7 +93,12 @@ class InvoiceProcessor:
         supplier = self.find_supplier(invoice.supplier_cui)
         po = self.find_po(invoice.po_number) if invoice.po_number else None
         later_net = self.later_approved_net(invoice.po_number, index)
-        codes = check_rules(invoice, supplier, po, later_net, self.business_date, self.config)
+        available = None
+        if self.config.three_way_match and po is not None:
+            available = self.available_quantities(invoice.po_number, index)
+            if available is None:
+                po = None
+        codes = check_rules(invoice, supplier, po, later_net, self.business_date, self.config, available)
         return Decision(document_id, outcome_for(codes), codes, invoice, supplier)
 
     def is_duplicate(self, document_id: str, index: int, invoice: Invoice) -> bool:
@@ -112,6 +118,38 @@ class InvoiceProcessor:
 
     def is_after(self, document_id: str, index: int) -> bool:
         return self.positions.get(document_id, -1) > index
+
+    def available_quantities(self, po_number: str, index: int) -> dict[str, Decimal] | None:
+        """Reface cantitatile disponibile de la pozitia curenta."""
+        later = {}
+        for decision in self.this_run:
+            if (decision["outcome"] != "APPROVED" or decision["po_number"] != po_number
+                    or not self.is_after(decision["document_id"], index)):
+                continue
+            document_id = decision["document_id"]
+            if document_id not in self.quantity_cache:
+                # Istoricul nu conține liniile; recitim factura aprobată, fără altă decizie.
+                content = self.client.get_bytes(f"/documents/{path_part(document_id)}")
+                try:
+                    self.quantity_cache[document_id] = invoice_quantities(extract_invoice(content))
+                except ExtractionError as err:
+                    raise HubError(f"Nu pot reciti cantitatile facturii aprobate {document_id}: {err}") from None
+            for code, quantity in self.quantity_cache[document_id].items():
+                later[code] = later.get(code, Decimal(0)) + quantity
+
+        receipts = self.client.get_json("/goods-receipts", params={"po_number": po_number}, allow_404=True)
+        if receipts is None:
+            return None
+        # Hub-ul întoarce {po_number, items: [...]}; acceptăm și lista descrisă în enunț.
+        if isinstance(receipts, dict):
+            receipts = receipts.get("items")
+        if not isinstance(receipts, list):
+            raise HubError("GET /goods-receipts: raspuns invalid, lipseste lista de articole")
+        available = {entry["item_code"]: to_decimal(entry["received_quantity"]) - to_decimal(entry["invoiced_quantity"])
+                     for entry in receipts}
+        for code, quantity in later.items():
+            available[code] = available.get(code, Decimal(0)) + quantity
+        return available
 
     def find_supplier(self, cui: str) -> dict | None:
         return self.client.get_json(f"/suppliers/{path_part(cui)}", allow_404=True)

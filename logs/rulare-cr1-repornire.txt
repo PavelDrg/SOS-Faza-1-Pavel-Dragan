@@ -1,0 +1,74 @@
+Run run_542a8fad97928b57: project A, suite change-request, change request CR-1, business date 2027-01-11.
+BASE_URL = https://apb.majordom.tech/r/hH67chZ9HQQKVD1uQKkZww
+Start 1 of 3: the solution is killed as soon as the run has 5 committed writes.
+$ .\.venv\Scripts\python.exe solutie.py https://apb.majordom.tech/r/hH67chZ9HQQKVD1uQKkZww
+[START] data de lucru 2027-01-11, 20 documente in inbox, 1 decizii in istoric (0 din aceasta rulare)
+[DOCUMENT] DOC-35771473: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[REINCERCARE] GET /goods-receipts?po_number=PO-829059: HTTP 503 SERVICE_UNAVAILABLE; incercarea 1 din 3 a esuat, astept 1s
+[REINCERCARE] GET /goods-receipts?po_number=PO-829059: 429 RATE_LIMITED, astept 1s (asteptarea 1 din 10, nu consuma o incercare)
+[DOCUMENT] DOC-64108986: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[REINCERCARE] POST /notifications: HTTP 503 RUN_PAUSED; incercarea 1 din 3 a esuat, astept 1s
+Killed the solution and its child processes after 4.7s.
+The run was paused at 5 committed writes and is resumed now: a restart follows.
+Start 2 of 3, on the same run.
+$ .\.venv\Scripts\python.exe solutie.py https://apb.majordom.tech/r/hH67chZ9HQQKVD1uQKkZww
+[START] data de lucru 2027-01-11, 20 documente in inbox, 4 decizii in istoric (3 din aceasta rulare)
+[DOCUMENT] DOC-35771473: RECORDED APPROVED coduri=[] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-64108986: RECORDED APPROVED coduri=[] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-65899333: RECORDED APPROVED coduri=[] notificari=[AP_TEAM] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-98903358: RECORDED REJECTED coduri=[PO_CLOSED, QTY_NOT_RECEIVED] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-44319735: RECORDED MANUAL_REVIEW coduri=[PO_MISSING] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-60743237: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-67555929: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-95486697: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-13071872: RECORDED MANUAL_REVIEW coduri=[IBAN_MISMATCH] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-61235418: RECORDED REJECTED coduri=[CURRENCY_MISMATCH, QTY_NOT_RECEIVED] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-72929625: RECORDED MANUAL_REVIEW coduri=[PO_NOT_FOUND] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-91376770: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[AP_REVIEWER]
+[REINCERCARE] POST /decisions: HTTP 500 INTERNAL_ERROR; incercarea 1 din 3 a esuat, astept 1s
+[REINCERCARE] POST /decisions: HTTP 500 INTERNAL_ERROR; incercarea 2 din 3 a esuat, astept 1s
+[DOCUMENT] DOC-31785877: FAILED APPROVED coduri=[] notificari=[] (POST /decisions a raspuns 500 la toate cele 3 incercari)
+[DOCUMENT] DOC-42735314: RECORDED REJECTED coduri=[PO_BALANCE_EXCEEDED, PO_SUPPLIER_MISMATCH] notificari=[SUPPLIER, AP_TEAM]
+[DOCUMENT] DOC-75896576: RECORDED DUPLICATE coduri=[DUPLICATE_INVOICE] notificari=[AP_TEAM]
+[DOCUMENT] DOC-22263050: RECORDED MANUAL_REVIEW coduri=[EXTRACTION_FAILED] notificari=[AP_REVIEWER] (XML invalid (unclosed token: line 37, column 2))
+[DOCUMENT] DOC-39424550: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-95442054: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[AP_REVIEWER]
+[DOCUMENT] DOC-33103215: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[DOCUMENT] DOC-86050872: RECORDED APPROVED coduri=[] notificari=[AP_TEAM]
+[RAPORT] trimis cu cheia report: 20 intrari
+The solution exited with code 0 after 11.2s.
+Start 3 of 3, on the same run.
+$ .\.venv\Scripts\python.exe solutie.py https://apb.majordom.tech/r/hH67chZ9HQQKVD1uQKkZww
+[START] data de lucru 2027-01-11, 20 documente in inbox, 20 decizii in istoric (19 din aceasta rulare)
+[DOCUMENT] DOC-35771473: RECORDED APPROVED coduri=[] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-64108986: RECORDED APPROVED coduri=[] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-65899333: RECORDED APPROVED coduri=[] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-98903358: RECORDED REJECTED coduri=[PO_CLOSED, QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-44319735: RECORDED MANUAL_REVIEW coduri=[PO_MISSING] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-60743237: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-67555929: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-95486697: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-13071872: RECORDED MANUAL_REVIEW coduri=[IBAN_MISMATCH] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-61235418: RECORDED REJECTED coduri=[CURRENCY_MISMATCH, QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-72929625: RECORDED MANUAL_REVIEW coduri=[PO_NOT_FOUND] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-91376770: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[REINCERCARE] POST /decisions: HTTP 500 INTERNAL_ERROR; incercarea 1 din 3 a esuat, astept 1s
+[REINCERCARE] POST /decisions: HTTP 500 INTERNAL_ERROR; incercarea 2 din 3 a esuat, astept 1s
+[DOCUMENT] DOC-31785877: FAILED APPROVED coduri=[] notificari=[] (POST /decisions a raspuns 500 la toate cele 3 incercari)
+[DOCUMENT] DOC-42735314: RECORDED REJECTED coduri=[PO_BALANCE_EXCEEDED, PO_SUPPLIER_MISMATCH] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-75896576: RECORDED DUPLICATE coduri=[DUPLICATE_INVOICE] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-22263050: RECORDED MANUAL_REVIEW coduri=[EXTRACTION_FAILED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-39424550: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-95442054: RECORDED MANUAL_REVIEW coduri=[QTY_NOT_RECEIVED] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-33103215: RECORDED APPROVED coduri=[] notificari=[] (decizie din pornirea anterioara)
+[DOCUMENT] DOC-86050872: RECORDED APPROVED coduri=[] notificari=[] (decizie din pornirea anterioara)
+[RAPORT] trimis cu cheia report: 20 intrari
+The solution exited with code 0 after 5.8s.
+The run has 42 committed writes.
+Run run_542a8fad97928b57  project A  suite change-request CR-1
+TOTAL 4.00 / 4.00  (100.0%)
+
+Category           Score     Max  Scenarios
+change_request      4.00    4.00          4
+
+Only totals and categories are shown for the change-request suite.
